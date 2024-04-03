@@ -3,8 +3,9 @@
     <div
       class="flex space-x-5 md:space-x-7 animate-loop-scroll group-hover:paused"
     >
+      <div v-if="loading">loading</div>
       <NuxtLink
-        loading="lazy"
+        v-else
         class="relative h-60 w-52 md:h-80 md:w-72 rounded-3xl overflow-hidden"
         v-for="user in users"
         :key="user.id"
