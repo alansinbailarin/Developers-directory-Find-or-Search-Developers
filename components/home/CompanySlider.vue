@@ -1,8 +1,6 @@
 <template>
-  <div class="flex overflow-hidden space-x-16 group">
-    <div
-      class="flex space-x-5 md:space-x-7 animate-loop-scroll group-hover:paused"
-    >
+  <div class="flex overflow-hidden space-x-16">
+    <div class="flex space-x-5 md:space-x-7 animate-loop-scroll">
       <NuxtLink
         class="relative h-60 w-80 md:h-80 md:w-[27rem] rounded-3xl overflow-hidden"
         v-for="company in companies"

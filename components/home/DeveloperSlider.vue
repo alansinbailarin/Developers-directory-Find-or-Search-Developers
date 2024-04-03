@@ -1,8 +1,6 @@
 <template>
-  <div class="flex overflow-hidden space-x-16 group">
-    <div
-      class="flex space-x-5 md:space-x-7 animate-loop-scroll group-hover:paused"
-    >
+  <div class="flex overflow-hidden space-x-16">
+    <div class="flex space-x-5 md:space-x-7 animate-loop-scroll">
       <div v-if="loading">loading</div>
       <NuxtLink
         v-else
