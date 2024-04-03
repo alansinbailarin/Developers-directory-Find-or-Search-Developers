@@ -5,7 +5,7 @@ export const useAuthStore = defineStore("auth", () => {
   const isLoading = ref(true);
 
   async function logout() {
-    await useApiFetch("api/auth/logout", {
+    await useApiFetch("/api/auth/logout", {
       method: "POST",
     });
 
@@ -16,7 +16,7 @@ export const useAuthStore = defineStore("auth", () => {
   }
 
   async function fetchUser(userId) {
-    const { data } = await useApiFetch(`api/user/${userId}`);
+    const { data } = await useApiFetch(`/api/user/${userId}`);
 
     user.value = data.value?.data;
 
@@ -24,9 +24,9 @@ export const useAuthStore = defineStore("auth", () => {
   }
 
   async function login(credentials) {
-    await useApiFetch("sanctum/csrf-cookie");
+    await useApiFetch("/sanctum/csrf-cookie");
 
-    const login = await useApiFetch("api/auth/login", {
+    const login = await useApiFetch("/api/auth/login", {
       method: "POST",
       body: credentials,
     });
@@ -42,9 +42,9 @@ export const useAuthStore = defineStore("auth", () => {
   }
 
   async function register(credentials) {
-    await useApiFetch("sanctum/csrf-cookie");
+    await useApiFetch("/sanctum/csrf-cookie");
 
-    const register = await useApiFetch("api/auth/register", {
+    const register = await useApiFetch("/api/auth/register", {
       method: "POST",
       body: credentials,
     });

@@ -46,7 +46,7 @@ const loading = ref(true);
 const loadDevelopers = async () => {
   try {
     loading.value = true;
-    const { data } = await useApiFetch("api/directory/last-twenty-developers");
+    const { data } = await useApiFetch("/api/directory/last-twenty-developers");
 
     users.value = data.value.data;
   } catch (error) {
