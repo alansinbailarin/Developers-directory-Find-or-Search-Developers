@@ -1,7 +1,7 @@
 <template>
   <section class="mb-20 px-4 md:px-52">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-      <div class="col-span-3">
+      <div class="md:col-span-3">
         <h3 class="text-orange-500 font-semibold text-lg">
           Your growth is important
         </h3>
@@ -30,7 +30,7 @@
           <img
             src="https://cdn.dribbble.com/userupload/3488082/file/original-d4e57539faebe0db4a51d464bd732d32.png?resize=2048x1536"
             alt="Developer benefits"
-            class="w-full h-80 rounded-lg object-cover"
+            class="w-full md:h-80 h-52 rounded-lg object-cover"
           />
         </picture>
       </div>
