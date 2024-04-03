@@ -21,7 +21,35 @@
       <div
         class="bg-white shadow-md p-4 text-center self-end col-span-2 rounded-lg"
       >
-        1
+        <picture>
+          <img
+            src="https://cdn.dribbble.com/userupload/3488082/file/original-d4e57539faebe0db4a51d464bd732d32.png?resize=2048x1536"
+            alt="Developer benefits"
+            class="w-full md:h-80 h-52 rounded-lg object-cover"
+          />
+        </picture>
+      </div>
+      <div
+        class="bg-white shadow-md p-2 text-center self-start col-span-2 mb-20 rounded-lg border-2 border-white"
+      >
+        <picture>
+          <img
+            src="https://cdn.dribbble.com/userupload/3488082/file/original-d4e57539faebe0db4a51d464bd732d32.png?resize=2048x1536"
+            alt="Developer benefits"
+            class="w-full md:h-80 h-52 rounded-lg object-cover"
+          />
+        </picture>
+      </div>
+      <div
+        class="bg-white shadow-md p-4 text-center self-end col-span-2 rounded-lg"
+      >
+        <picture>
+          <img
+            src="https://cdn.dribbble.com/userupload/3488082/file/original-d4e57539faebe0db4a51d464bd732d32.png?resize=2048x1536"
+            alt="Developer benefits"
+            class="w-full md:h-80 h-52 rounded-lg object-cover"
+          />
+        </picture>
       </div>
       <div
         class="bg-white shadow-md p-2 text-center self-start col-span-2 mb-20 rounded-lg border-2 border-white"

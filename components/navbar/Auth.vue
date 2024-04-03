@@ -30,7 +30,7 @@
             <li class="text-gray-700 font-semibold">
               {{ auth.user.name }} {{ auth.user.surname }}
             </li>
-            <li class="mt-1 text-gray-500 font-thin text-sm">
+            <li class="mb-2 text-gray-500 font-thin text-sm">
               {{ auth.user.uuid }}
             </li>
           </ul>
