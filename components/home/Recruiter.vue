@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-8 md:mt-16 md:mx-52">
+  <div class="mt-8 md:mt-16 mx-4 md:mx-52">
     <div>
       <h1 class="text-4xl md:text-6xl font-semibold">
         Find the bestest developers in the world and
