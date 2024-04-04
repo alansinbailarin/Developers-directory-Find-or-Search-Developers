@@ -25,34 +25,48 @@
           <img
             src="https://cdn.dribbble.com/userupload/3488082/file/original-d4e57539faebe0db4a51d464bd732d32.png?resize=2048x1536"
             alt="Developer benefits"
-            class="w-full md:h-80 h-52 rounded-lg object-cover"
+            class="w-full md:h-80 h-52 rounded object-cover mb-5"
           />
         </picture>
+        <div class="text-left">
+          <span
+            class="bg-gray-100 px-3 py-2 rounded-md text-gray-600 font-medium text-sm"
+            >Validate yourself</span
+          >
+          <h1 class="text-gray-900 font-medium text-2xl mt-3">
+            Start by creating your profile
+          </h1>
+          <p class="text-lg text-gray-600 mt-2">
+            Complete the information in your profile, your information will come
+            to us directly, we will validate it to ensure that it is real
+            information
+          </p>
+        </div>
       </div>
       <div
-        class="bg-white shadow-md p-2 text-center self-start col-span-2 mb-20 rounded-lg border-2 border-white"
+        class="bg-white shadow-md p-2 text-center self-start col-span-2 md:mb-20 rounded-lg border-2 border-white"
       >
         <picture>
           <img
             src="https://cdn.dribbble.com/userupload/3488082/file/original-d4e57539faebe0db4a51d464bd732d32.png?resize=2048x1536"
             alt="Developer benefits"
-            class="w-full md:h-80 h-52 rounded-lg object-cover"
+            class="w-full md:h-80 h-52 rounded object-cover"
           />
         </picture>
       </div>
       <div
-        class="bg-white shadow-md p-4 text-center self-end col-span-2 rounded-lg"
+        class="bg-white shadow-md p-2 text-center self-end col-span-2 rounded-lg"
       >
         <picture>
           <img
             src="https://cdn.dribbble.com/userupload/3488082/file/original-d4e57539faebe0db4a51d464bd732d32.png?resize=2048x1536"
             alt="Developer benefits"
-            class="w-full md:h-80 h-52 rounded-lg object-cover"
+            class="w-full md:h-80 h-52 rounded object-cover"
           />
         </picture>
       </div>
       <div
-        class="bg-white shadow-md p-2 text-center self-start col-span-2 mb-20 rounded-lg border-2 border-white"
+        class="bg-white shadow-md p-2 text-center self-start col-span-2 md:mb-20 rounded-lg border-2 border-white"
       >
         <picture>
           <img
