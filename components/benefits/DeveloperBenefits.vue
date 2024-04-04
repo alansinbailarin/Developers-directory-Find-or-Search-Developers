@@ -23,9 +23,9 @@
       >
         <picture>
           <img
-            src="https://cdn.dribbble.com/userupload/3488082/file/original-d4e57539faebe0db4a51d464bd732d32.png?resize=2048x1536"
+            src="../../assets/images/profile_creation.jpg"
             alt="Developer benefits"
-            class="w-full md:h-80 h-52 rounded object-cover mb-5"
+            class="w-full md:h-full rounded object-cover mb-5"
           />
         </picture>
         <div class="text-left">
