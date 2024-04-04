@@ -23,9 +23,33 @@
       >
         <picture>
           <img
-            src="../../assets/images/profile_creation.jpg"
-            alt="Developer benefits"
-            class="w-full md:h-full rounded object-cover mb-5"
+            src="../../assets/images/validated.jpg"
+            alt="Profile validation"
+            class="w-full h-full mb-5 rounded object-cover"
+          />
+        </picture>
+        <div class="text-left">
+          <span
+            class="bg-gray-100 px-3 py-2 rounded-md text-gray-600 font-medium text-sm"
+            >Validate by us</span
+          >
+          <h1 class="text-gray-900 font-medium text-2xl mt-3">
+            We will validate you
+          </h1>
+          <p class="text-lg text-gray-600 mt-2">
+            Once your profile is complete, the devsdir team will review your
+            professional profile, send you feedback or approve your profile.
+          </p>
+        </div>
+      </div>
+      <div
+        class="bg-white shadow-md p-4 text-center self-start md:mb-20 col-span-2 rounded-lg"
+      >
+        <picture>
+          <img
+            src="../../assets/images/profile.jpg"
+            alt="Profile"
+            class="w-full h-full rounded object-cover mb-5"
           />
         </picture>
         <div class="text-left">
@@ -39,42 +63,58 @@
           <p class="text-lg text-gray-600 mt-2">
             Complete the information in your profile, your information will come
             to us directly, we will validate it to ensure that it is real
-            information
+            information.
           </p>
         </div>
       </div>
       <div
-        class="bg-white shadow-md p-2 text-center self-start col-span-2 md:mb-20 rounded-lg border-2 border-white"
+        class="bg-white shadow-md p-4 text-center self-end md:mt-20 col-span-2 rounded-lg"
       >
         <picture>
           <img
-            src="https://cdn.dribbble.com/userupload/3488082/file/original-d4e57539faebe0db4a51d464bd732d32.png?resize=2048x1536"
-            alt="Developer benefits"
-            class="w-full md:h-80 h-52 rounded object-cover"
+            src="../../assets/images/development.jpeg"
+            alt="Development"
+            class="w-full h-full mb-5 rounded object-cover"
           />
         </picture>
+        <div class="text-left">
+          <span
+            class="bg-gray-100 px-3 py-2 rounded-md text-gray-600 font-medium text-sm"
+            >Get hired</span
+          >
+          <h1 class="text-gray-900 font-medium text-2xl mt-3">
+            Start with your job
+          </h1>
+          <p class="text-lg text-gray-600 mt-2">
+            Once your profile is validated, you have job offers or freelance
+            projects, get hired and start enjoying the job of your dreams.
+          </p>
+        </div>
       </div>
       <div
-        class="bg-white shadow-md p-2 text-center self-end col-span-2 rounded-lg"
+        class="bg-white shadow-md p-4 text-center self-start md:mb-20 col-span-2 rounded-lg"
       >
         <picture>
           <img
-            src="https://cdn.dribbble.com/userupload/3488082/file/original-d4e57539faebe0db4a51d464bd732d32.png?resize=2048x1536"
-            alt="Developer benefits"
-            class="w-full md:h-80 h-52 rounded object-cover"
+            src="../../assets/images/search_job.jpg"
+            alt="Search job"
+            class="w-full h-full rounded object-cover mb-5"
           />
         </picture>
-      </div>
-      <div
-        class="bg-white shadow-md p-2 text-center self-start col-span-2 md:mb-20 rounded-lg border-2 border-white"
-      >
-        <picture>
-          <img
-            src="https://cdn.dribbble.com/userupload/3488082/file/original-d4e57539faebe0db4a51d464bd732d32.png?resize=2048x1536"
-            alt="Developer benefits"
-            class="w-full md:h-80 h-52 rounded-lg object-cover"
-          />
-        </picture>
+        <div class="text-left">
+          <span
+            class="bg-gray-100 px-3 py-2 rounded-md text-gray-600 font-medium text-sm"
+            >Search or wait</span
+          >
+          <h1 class="text-gray-900 font-medium text-2xl mt-3">
+            Wait for an offer or search for a project
+          </h1>
+          <p class="text-lg text-gray-600 mt-2">
+            There are several alternatives to find your desired job, whether it
+            is a freelance project or a regular job. Once your profile is
+            completed, you just have to wait or apply.
+          </p>
+        </div>
       </div>
     </div>
   </section>
