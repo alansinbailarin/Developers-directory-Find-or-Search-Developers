@@ -55,7 +55,9 @@ const handleScroll = () => {
           <NuxtLink to="/" :class="getLinkClass('/')">Home</NuxtLink>
         </li>
         <li>
-          <NuxtLink to="/">Developers directory</NuxtLink>
+          <NuxtLink to="/directory" :class="getLinkClass('/directory')"
+            >Developers directory</NuxtLink
+          >
         </li>
         <li>
           <NuxtLink to="/">Projects</NuxtLink>
