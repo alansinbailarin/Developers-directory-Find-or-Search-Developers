@@ -5,9 +5,10 @@
     <div class="text-gray-100">
       <h4 class="font-medium">Search result</h4>
     </div>
-    <div class="text-gray-100">
+    <div class="text-gray-100" v-if="developersCount">
       <p class="font-light text-sm">{{ developersCount }} developers found</p>
     </div>
+    <div v-else class="h-4 bg-gray-800 rounded-full w-32 animate-pulse"></div>
   </div>
 </template>
 <script setup>
