@@ -9,7 +9,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div style="font-family: 'Poppins'">
     <Navbar :auth="auth" />
     <slot />
   </div>

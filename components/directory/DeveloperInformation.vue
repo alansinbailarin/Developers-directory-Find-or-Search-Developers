@@ -62,6 +62,54 @@
             </button>
           </div>
         </div>
+        <div class="grid grid-cols-2 gap-4 my-3">
+          <div class="flex items-center justify-center">
+            <button
+              class="bg-orange-500 flex items-center gap-2 justify-center w-full text-white font-medium px-6 py-2 rounded-full text-sm shadow hover:bg-orange-400 transition-all duration-300 ease-in-out"
+            >
+              <span
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-4 h-4"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+                  />
+                </svg>
+              </span>
+              Connect
+            </button>
+          </div>
+          <div class="flex items-center justify-center">
+            <button
+              class="bg-gray-900 flex items-center justify-center gap-2 w-full text-white font-medium px-6 py-2 rounded-full text-sm shadow hover:bg-gray-800 transition-all duration-300 ease-in-out"
+            >
+              <span
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-4 h-4"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                </svg>
+              </span>
+              Follow
+            </button>
+          </div>
+        </div>
         <div class="my-4 grid grid-cols-4 gap-4">
           <div
             class="flex items-center justify-center bg-blue-100 p-5 rounded-lg flex-col text-sm"
