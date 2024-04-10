@@ -103,8 +103,6 @@ const props = defineProps({
 
 const mobileMenuOpen = JSON.parse(localStorage.getItem("mobileMenuOpen"));
 
-console.log(mobileMenuOpen);
-
 const emit = defineEmits(["changeUserType"]);
 
 const handleChange = () => {

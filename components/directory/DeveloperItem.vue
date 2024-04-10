@@ -1,5 +1,8 @@
 <template>
-  <section class="flex flex-col px-5 py-3 bg-gray-50 mb-3 rounded-xl">
+  <section
+    class="flex flex-col px-5 py-3 bg-gray-50 mb-3 rounded-xl hover:cursor-pointer shadow-sm"
+    @click="changeDeveloperProfile()"
+  >
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-3">
         <div>
@@ -26,7 +29,7 @@
           </div>
           <div class="font-semibold text-sm text-gray-900 line-clamp-1">
             <h1 v-if="info?.title">{{ info?.title }}</h1>
-            <h1 v-else>Software developer</h1>
+            <h1 v-else>Developer</h1>
           </div>
         </div>
       </div>
@@ -60,10 +63,15 @@
         Not description yet.
       </p>
       <hr class="my-3 h-0.5 bg-gray-100" />
-      <div>
+      <div class="flex items-center gap-2">
         <span :class="userStatusClass" class="text-sm">{{
           userStatusText
-        }}</span>
+        }}</span
+        ><span
+          class="inline-flex items-center animate-pulse justify-center w-2 h-2 text-xs mt-0.5 font-semibold rounded-full"
+          :class="badgeStatusClass"
+        >
+        </span>
       </div>
     </div>
   </section>
@@ -81,6 +89,17 @@ const loading = ref(true);
 const loadingStatus = ref(true);
 const info = ref(null);
 const userStatus = ref(null);
+const route = useRoute();
+const router = useRouter();
+const developerUuid = props.developer.uuid;
+
+const changeDeveloperProfile = () => {
+  router.push({
+    query: {
+      developer: developerUuid,
+    },
+  });
+};
 
 const loadInformation = async () => {
   try {
@@ -105,8 +124,6 @@ const loadUserStatus = async () => {
     );
 
     userStatus.value = data.value.data;
-
-    console.log(userStatus);
   } catch (error) {
     console.error(error);
   } finally {
@@ -124,6 +141,19 @@ const userStatusClass = computed(() => {
       return "text-yellow-400";
     default:
       return "text-gray-500";
+  }
+});
+
+const badgeStatusClass = computed(() => {
+  switch (userStatus.value?.id) {
+    case 1:
+      return "bg-green-400";
+    case 2:
+      return "bg-red-400";
+    case 3:
+      return " bg-yellow-400";
+    default:
+      return "bg-gray-200";
   }
 });
 

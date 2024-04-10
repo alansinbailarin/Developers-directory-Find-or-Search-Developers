@@ -20,18 +20,30 @@
       </div>
       <div class="w-4/6">
         <div class="px-6 py-3">Aqui ira el buscador con los filtros</div>
-        <div class="mt-6">Aqui el detalle del developer</div>
+        <DeveloperInformation />
       </div>
     </div>
   </div>
 </template>
 <script setup>
-import DeveloperList from "@/components/directory/DeveloperList.vue";
-import SearchResult from "@/components/directory/SearchResult.vue";
+// Components
+const DeveloperList = defineAsyncComponent(() =>
+  import("@/components/directory/DeveloperList.vue")
+);
+
+const SearchResult = defineAsyncComponent(() =>
+  import("@/components/directory/SearchResult.vue")
+);
+
+const DeveloperInformation = defineAsyncComponent(() =>
+  import("@/components/directory/DeveloperInformation.vue")
+);
 
 const developers = ref([]);
 const loading = ref(true);
 const auth = useAuthStore();
+const router = useRouter();
+const lastDeveloperUuid = ref(null);
 
 const userId = computed(() => {
   return auth.user ? auth.user?.id : 0;
@@ -40,9 +52,23 @@ const userId = computed(() => {
 const loadDevelopers = async () => {
   try {
     loading.value = true;
-    const { data } = await useApiFetch("/api/directory/developers/" + userId);
+    const { data } = await useApiFetch(
+      "/api/directory/developers/" + userId.value
+    );
 
     developers.value = data.value.data;
+
+    if (developers.value.length > 0) {
+      lastDeveloperUuid.value = developers.value[0].uuid;
+    }
+
+    router.push({
+      query: {
+        developer: lastDeveloperUuid.value,
+      },
+
+      replace: true,
+    });
   } catch (error) {
     console.error(error);
   } finally {

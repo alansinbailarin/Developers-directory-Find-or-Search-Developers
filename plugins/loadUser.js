@@ -6,8 +6,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     try {
       auth.isLoading = true;
       userId.value = localStorage.getItem("userId");
-
-      console.log(userId.value);
     } catch (error) {
       console.error(error);
     } finally {

@@ -7,8 +7,5 @@ export default defineNuxtConfig({
     },
   },
   devtools: { enabled: true },
-  modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss"],
-  // app: {
-  //   pageTransition: { name: "page", mode: "out-in" },
-  // },
+  modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss", "@nuxtjs/google-fonts"],
 });

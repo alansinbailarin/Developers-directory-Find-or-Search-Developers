@@ -62,8 +62,6 @@ const loadCompanies = async () => {
   } finally {
     loading.value = false;
   }
-
-  console.log(companies.value);
 };
 
 onMounted(() => {

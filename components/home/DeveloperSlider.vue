@@ -54,8 +54,6 @@ const loadDevelopers = async () => {
   } finally {
     loading.value = false;
   }
-
-  console.log(users.value);
 };
 
 onMounted(() => {
