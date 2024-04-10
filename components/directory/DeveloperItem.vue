@@ -1,7 +1,8 @@
 <template>
   <section
     v-if="!loading"
-    class="flex flex-col px-5 py-3 bg-gray-50 mb-3 rounded-xl hover:cursor-pointer shadow-sm"
+    class="flex flex-col px-5 py-3 mb-3 rounded-xl hover:cursor-pointer shadow-sm"
+    :class="itemSelected ? 'bg-gray-100' : 'bg-gray-50'"
     @click="changeDeveloperProfile()"
   >
     <div class="flex items-center justify-between">
@@ -53,6 +54,37 @@
         </button>
       </div>
     </div>
+    <div class="grid grid-cols-3 pt-2 gap-2 text-xs">
+      <div
+        class="flex items-center justify-center bg-white px-4 py-2 rounded-full"
+      >
+        <span
+          v-if="developer.user_salary?.hourly_rate"
+          class="text-gray-700 font-medium"
+          >${{ developer.user_salary?.hourly_rate }}
+          <span class="font-normal">/H</span></span
+        >
+        <span v-else class="text-gray-700 font-medium">$NS</span>
+      </div>
+      <div
+        class="flex items-center justify-center bg-white px-4 py-2 rounded-full"
+      >
+        <span v-if="developer.job_type?.name" class="text-gray-700 font-medium"
+          >{{ developer.job_type?.name }}
+        </span>
+        <span v-else class="text-gray-700 font-medium">NS</span>
+      </div>
+      <div
+        class="flex items-center justify-center bg-white px-4 py-2 rounded-full"
+      >
+        <span
+          v-if="developer.skill_level?.name"
+          class="text-gray-700 font-medium"
+          >{{ developer.skill_level?.name }}
+        </span>
+        <span v-else class="text-gray-700 font-medium">NS</span>
+      </div>
+    </div>
     <div class="mt-2">
       <p
         v-if="info?.about"
@@ -75,15 +107,13 @@
         </span>
       </div>
       <div v-else>
-        <div
-          class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32 animate-pulse"
-        ></div>
+        <div class="h-4 bg-gray-200 rounded-full w-32 animate-pulse"></div>
       </div>
     </div>
   </section>
   <section v-else>
     <div
-      class="h-36 w-80 bg-gray-50 rounded-lg dark:bg-gray-700 mb-3 animate-pulse flex items-center justify-center"
+      class="h-36 w-80 bg-gray-100 rounded-lg mb-3 animate-pulse flex items-center justify-center"
     >
       <Loader />
     </div>
@@ -128,6 +158,10 @@ const loadInformation = async () => {
     loading.value = false;
   }
 };
+
+const itemSelected = computed(() => {
+  return route.query.developer == developerUuid;
+});
 
 const loadUserStatus = async () => {
   try {

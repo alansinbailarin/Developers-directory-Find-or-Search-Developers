@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="w-4/6">
-        <div class="px-6 py-3">Aqui ira el buscador con los filtros</div>
+        <SearchResult :developers="developers" />
         <DeveloperInformation />
       </div>
     </div>

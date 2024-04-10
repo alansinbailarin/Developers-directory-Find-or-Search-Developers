@@ -3,7 +3,7 @@
     class="bg-black rounded-full px-6 py-3 shadow flex items-center justify-between"
   >
     <div class="text-gray-100">
-      <h4 class="font-medium">Search result</h4>
+      <h4 class="font-medium text-sm">Search result</h4>
     </div>
     <div class="text-gray-100" v-if="developersCount">
       <p class="font-light text-sm">{{ developersCount }} developers found</p>
