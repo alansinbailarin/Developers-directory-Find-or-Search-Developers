@@ -1,5 +1,6 @@
 <template>
   <section
+    v-if="!loading"
     class="flex flex-col px-5 py-3 bg-gray-50 mb-3 rounded-xl hover:cursor-pointer shadow-sm"
     @click="changeDeveloperProfile()"
   >
@@ -63,7 +64,7 @@
         Not description yet.
       </p>
       <hr class="my-3 h-0.5 bg-gray-100" />
-      <div class="flex items-center gap-2">
+      <div v-if="!loadingStatus" class="flex items-center gap-2">
         <span :class="userStatusClass" class="text-sm">{{
           userStatusText
         }}</span
@@ -73,6 +74,18 @@
         >
         </span>
       </div>
+      <div v-else>
+        <div
+          class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-32 animate-pulse"
+        ></div>
+      </div>
+    </div>
+  </section>
+  <section v-else>
+    <div
+      class="h-36 w-80 bg-gray-50 rounded-lg dark:bg-gray-700 mb-3 animate-pulse flex items-center justify-center"
+    >
+      <Loader />
     </div>
   </section>
 </template>

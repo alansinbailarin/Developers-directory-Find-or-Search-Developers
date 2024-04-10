@@ -1,6 +1,6 @@
 <template>
   <section
-    v-if="developer"
+    v-if="developer && !loading"
     class="mt-6 overflow-y-auto h-[65vh] scroll-styling rounded-lg bg-gray-50 shadow-sm p-6"
   >
     <div class="flex items-center gap-4 justify-between">
@@ -55,6 +55,12 @@
         </button>
       </div>
     </div>
+  </section>
+  <section
+    v-else
+    class="flex items-center justify-center mt-6 h-[65vh] rounded-lg bg-gray-50 shadow-sm p-6"
+  >
+    <Loader />
   </section>
 </template>
 <script setup>

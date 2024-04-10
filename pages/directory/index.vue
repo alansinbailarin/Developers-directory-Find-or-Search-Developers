@@ -66,8 +66,6 @@ const loadDevelopers = async () => {
       query: {
         developer: lastDeveloperUuid.value,
       },
-
-      replace: true,
     });
   } catch (error) {
     console.error(error);
