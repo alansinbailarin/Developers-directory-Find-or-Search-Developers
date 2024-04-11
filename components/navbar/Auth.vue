@@ -24,7 +24,7 @@
         <Dropdown
           v-show="dropdownOpen"
           dropdown="user-info"
-          class="right-4 md:right-52 px-3 py-2"
+          class="right-4 md:right-52 px-3 py-2 mt-72"
         >
           <ul class="py-1">
             <li class="text-gray-700 font-semibold">

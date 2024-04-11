@@ -1,5 +1,5 @@
 <template>
-  <section class="overflow-y-auto h-[62vh] scroll-styling rounded-lg">
+  <section class="overflow-y-auto h-[67vh] scroll-styling rounded-lg">
     <DeveloperItem
       :developer="developer"
       v-for="developer in developers"

@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="w-4/6">
-        <SearchResult :developers="developers" />
+        <DeveloperSearch @send-availability="onAvailabilitySelected" />
         <DeveloperInformation />
       </div>
     </div>
@@ -39,11 +39,40 @@ const DeveloperInformation = defineAsyncComponent(() =>
   import("@/components/directory/DeveloperInformation.vue")
 );
 
+const DeveloperSearch = defineAsyncComponent(() =>
+  import("@/components/directory/DeveloperSearch.vue")
+);
+
 const developers = ref([]);
 const loading = ref(true);
 const auth = useAuthStore();
 const router = useRouter();
+const route = useRoute();
 const lastDeveloperUuid = ref(null);
+const availabilityId = ref(null);
+const availability = ref(null);
+const availabilityName = ref(null);
+
+const searchTerm = ref("");
+
+watch(
+  () => route.query.search,
+  (newValue) => {
+    searchTerm.value = newValue || "";
+
+    if (availability.value) {
+      onAvailabilitySelected(availability.value);
+    }
+  }
+);
+
+const onAvailabilitySelected = (selectedAvailability) => {
+  if (selectedAvailability) {
+    availability.value = selectedAvailability;
+    availabilityName.value = selectedAvailability.name;
+    availabilityId.value = selectedAvailability.id;
+  }
+};
 
 const userId = computed(() => {
   return auth.user ? auth.user?.id : 0;
@@ -52,9 +81,18 @@ const userId = computed(() => {
 const loadDevelopers = async () => {
   try {
     loading.value = true;
-    const { data } = await useApiFetch(
-      "/api/directory/developers/" + userId.value
-    );
+
+    let apiUrl =
+      "/api/directory/developers/" +
+      userId.value +
+      "?search=" +
+      searchTerm.value;
+
+    if (availabilityId.value) {
+      apiUrl += "&availability=" + availabilityId.value;
+    }
+
+    const { data } = await useApiFetch(apiUrl);
 
     developers.value = data.value.data;
 
@@ -65,6 +103,8 @@ const loadDevelopers = async () => {
     router.push({
       query: {
         developer: lastDeveloperUuid.value,
+        search: searchTerm.value,
+        availability: availabilityName.value,
       },
     });
   } catch (error) {
@@ -74,7 +114,12 @@ const loadDevelopers = async () => {
   }
 };
 
-watchEffect(() => {
-  loadDevelopers();
-}, [userId]);
+watchEffect(
+  () => {
+    if (userId.value !== null || searchTerm.value !== "") {
+      loadDevelopers();
+    }
+  },
+  { flush: "sync" }
+);
 </script>

@@ -114,9 +114,7 @@
   <section v-else>
     <div
       class="h-36 w-80 bg-gray-100 rounded-lg mb-3 animate-pulse flex items-center justify-center"
-    >
-      <Loader />
-    </div>
+    ></div>
   </section>
 </template>
 <script setup>
@@ -136,10 +134,20 @@ const route = useRoute();
 const router = useRouter();
 const developerUuid = props.developer.uuid;
 
+const currentSearchTerm = computed(() => {
+  return router.currentRoute.value.query.search;
+});
+
+const currentAvailability = computed(() => {
+  return router.currentRoute.value.query.availability;
+});
+
 const changeDeveloperProfile = () => {
   router.push({
     query: {
       developer: developerUuid,
+      search: currentSearchTerm.value,
+      availability: currentAvailability.value,
     },
   });
 };

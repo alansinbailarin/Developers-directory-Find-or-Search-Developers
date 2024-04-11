@@ -1,7 +1,7 @@
 <template>
   <section
     v-if="developer"
-    class="mt-5 overflow-y-auto h-[62vh] scroll-styling rounded-lg bg-gray-50 shadow-sm p-6"
+    class="mt-5 overflow-y-auto h-[67vh] scroll-styling rounded-lg bg-gray-50 shadow-sm p-6"
   >
     <transition name="slide-fade">
       <div v-if="!loading">
@@ -112,7 +112,7 @@
         </div>
         <div class="my-4 grid grid-cols-4 gap-4">
           <div
-            class="flex items-center justify-center bg-blue-100 p-5 rounded-lg flex-col text-sm"
+            class="flex items-center justify-center bg-blue-100 p-5 rounded-lg flex-col text-sm text-center"
           >
             <h1 class="text-xs text-blue-700">Salary</h1>
             <p
@@ -125,7 +125,7 @@
             <p class="font-semibold text-blue-900" v-else>Not specified</p>
           </div>
           <div
-            class="flex items-center justify-center bg-green-100 p-5 rounded-lg flex-col text-sm"
+            class="flex items-center justify-center bg-green-100 p-5 rounded-lg flex-col text-sm text-center"
           >
             <h1 class="text-xs text-green-700">Preferred job type</h1>
             <p
@@ -137,7 +137,7 @@
             <p class="font-semibold text-green-900" v-else>Not specified</p>
           </div>
           <div
-            class="flex items-center justify-center bg-orange-100 p-5 rounded-lg flex-col text-sm"
+            class="flex items-center justify-center bg-orange-100 p-5 rounded-lg flex-col text-sm text-center"
           >
             <h1 class="text-xs text-orange-700">Skill level</h1>
             <p
@@ -149,7 +149,7 @@
             <p class="font-semibold text-orange-900" v-else>Not specified</p>
           </div>
           <div
-            class="flex items-center justify-center bg-violet-100 p-5 rounded-lg flex-col text-sm"
+            class="flex items-center justify-center bg-violet-100 p-5 rounded-lg flex-col text-sm text-center"
           >
             <h1 class="text-xs text-violet-700">Experience</h1>
             <p
@@ -185,7 +185,7 @@
   </section>
   <section
     v-else
-    class="flex items-center h-[62vh] justify-center mt-5 rounded-lg bg-gray-50 shadow-sm p-6"
+    class="flex items-center h-[66vh] justify-center mt-5 rounded-lg bg-gray-50 shadow-sm p-6"
   >
     <Loader />
   </section>
