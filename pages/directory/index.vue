@@ -13,13 +13,21 @@
     </div>
     <div class="flex items-center gap-4 my-8">
       <div class="w-2/6">
-        <SearchResult :developers="developers" />
+        <SearchResult :developersTotalCount="developersTotalCount" />
         <div class="mt-5">
-          <DeveloperList :developers="developers" />
+          <DeveloperList
+            :developers="developers"
+            :developersData="developersData"
+            @next-page="onLoadNextPage"
+          />
         </div>
       </div>
       <div class="w-4/6">
-        <DeveloperSearch @send-availability="onAvailabilitySelected" />
+        <DeveloperSearch
+          @send-availability="onAvailabilitySelected"
+          @send-order="onOrderSelected"
+          @user-typing="handleTyping"
+        />
         <DeveloperInformation />
       </div>
     </div>
@@ -44,6 +52,7 @@ const DeveloperSearch = defineAsyncComponent(() =>
 );
 
 const developers = ref([]);
+const developersData = ref([]);
 const loading = ref(true);
 const auth = useAuthStore();
 const router = useRouter();
@@ -52,35 +61,96 @@ const lastDeveloperUuid = ref(null);
 const availabilityId = ref(null);
 const availability = ref(null);
 const availabilityName = ref(null);
-
+const order = ref(null);
+const orderName = ref(null);
+const orderValue = ref(null);
+const nextPage = ref(0);
+const developersTotalCount = ref(0);
 const searchTerm = ref("");
+const isTyping = ref(false);
+const reloadFilters = ref(false);
+
+const page = computed(() => {
+  return developersData.value.current_page;
+});
+
+// const shouldResetPage = computed(() => {
+//   return searchTerm.value !== "" && page.value !== 1;
+// });
 
 watch(
   () => route.query.search,
   (newValue) => {
     searchTerm.value = newValue || "";
 
-    if (availability.value) {
-      onAvailabilitySelected(availability.value);
-    }
+    // if (availability.value) {
+    //   onAvailabilitySelected(availability.value);
+    // }
+
+    // if (order.value) {
+    //   onOrderSelected(order.value);
+    // }
+
+    // if (page.value) {
+    //   loadDevelopers(page.value);
+    // }
   }
 );
+
+const onLoadNextPage = (_nextPage) => {
+  nextPage.value = _nextPage;
+
+  loadDevelopers(nextPage);
+};
 
 const onAvailabilitySelected = (selectedAvailability) => {
   if (selectedAvailability) {
     availability.value = selectedAvailability;
     availabilityName.value = selectedAvailability.name;
     availabilityId.value = selectedAvailability.id;
+
+    loadDevelopers();
   }
+};
+
+const onOrderSelected = (selectedOrder) => {
+  if (selectedOrder) {
+    order.value = selectedOrder;
+    orderName.value = selectedOrder.name;
+    orderValue.value = selectedOrder.value;
+
+    loadDevelopers();
+  }
+};
+
+const handleTyping = (typing) => {
+  isTyping.value = typing;
 };
 
 const userId = computed(() => {
   return auth.user ? auth.user?.id : 0;
 });
 
-const loadDevelopers = async () => {
+const loadDevelopers = async (_page) => {
   try {
     loading.value = true;
+
+    if (!isTyping.value) {
+      if (nextPage.value > page.value) {
+        _page = nextPage.value;
+      } else {
+        _page = page.value;
+      }
+    } else {
+      _page = 1;
+      if (nextPage.value) {
+        nextPage.value = 1;
+      }
+    }
+
+    if (_page === 1) {
+      developers.value = [];
+    }
 
     let apiUrl =
       "/api/directory/developers/" +
@@ -92,9 +162,24 @@ const loadDevelopers = async () => {
       apiUrl += "&availability=" + availabilityId.value;
     }
 
+    if (orderValue.value) {
+      apiUrl += "&order=" + orderValue.value;
+    }
+
+    if (_page) {
+      apiUrl += "&page=" + _page;
+    }
+
     const { data } = await useApiFetch(apiUrl);
 
-    developers.value = data.value.data;
+    const newDevelopers = data.value.data.data.filter((newDev) => {
+      return !developers.value.some((dev) => dev.id === newDev.id);
+    });
+
+    developers.value = developers.value.concat(newDevelopers);
+
+    developersTotalCount.value = data.value.data.total;
+    developersData.value = data.value.data;
 
     if (developers.value.length > 0) {
       lastDeveloperUuid.value = developers.value[0].uuid;
@@ -105,6 +190,7 @@ const loadDevelopers = async () => {
         developer: lastDeveloperUuid.value,
         search: searchTerm.value,
         availability: availabilityName.value,
+        order: orderName.value,
       },
     });
   } catch (error) {

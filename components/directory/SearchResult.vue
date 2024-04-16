@@ -13,13 +13,13 @@
 </template>
 <script setup>
 const props = defineProps({
-  developers: {
+  developersTotalCount: {
     type: Array,
     required: true,
   },
 });
 
 const developersCount = computed(() => {
-  return props.developers.length;
+  return props.developersTotalCount;
 });
 </script>

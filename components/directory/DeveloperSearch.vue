@@ -22,9 +22,10 @@
       </div>
       <input
         type="search"
-        class="block w-full ps-10 text-gray-900 border border-gray-300 rounded-full bg-gray-50"
+        class="block w-full ps-10 text-gray-900 border border-gray-100 rounded-full bg-gray-50"
         placeholder="Search by title, name..."
         v-model="search"
+        @input="onSearchInput"
       />
     </div>
     <div>
@@ -45,69 +46,160 @@
         </svg>
       </button>
     </div>
-    <transition :duration="550" name="nested">
-      <Dropdown
-        v-show="filtersOpen"
-        dropdown="filters-open"
-        class="right-4 md:right-52 px-2 py-2 mt-20 text-sm text-gray-700"
-      >
-        <div class="flex items-center">
-          <div class="mr-3">
-            <span>Availability:</span>
-          </div>
 
-          <button
-            class="flex items-center gap-1"
-            @click="toggleStatusesDropdown()"
+    <div
+      v-show="filtersOpen"
+      class="fixed inset-0 backdrop-filter backdrop-blur-sm z-50 flex justify-center items-center bg-black bg-opacity-50"
+    >
+      <transition name="bounce">
+        <div
+          v-show="filtersOpen"
+          class="bg-white rounded-lg shadow-lg max-w-lg w-full text-sm"
+        >
+          <div
+            class="p-4 flex items-center justify-between border bg-gray-50 border-b-gray-100 rounded-t-lg"
           >
-            {{ availability || "Options" }}
-            <span
-              ><svg
+            <h3 class="text-sm font-bold text-gray-800">Filters settings</h3>
+            <button @click="toggleFilters()" class="text-gray-600">
+              <svg
+                class="w-4 h-4"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
                 stroke="currentColor"
-                class="w-4 h-4"
-                :class="{
-                  'transform rotate-180 transition-all ease-in-out duration-300':
-                    openStatusesDropdown,
-                  'transform rotate-0 transition-all ease-in-out duration-300':
-                    !openStatusesDropdown,
-                }"
               >
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                />
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
               </svg>
-            </span>
-          </button>
-
-          <div>
-            <transition :duration="550" name="nested">
-              <Dropdown
-                v-show="openStatusesDropdown"
-                dropdown="availability-open"
-                class="right-0 px-2 py-2 mt-5 text-sm"
-              >
-                <div>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div class="p-4">
+            <!-- Contenido del modal -->
+            <div class="flex items-center mb-3 justify-between">
+              <div class="text-sm">
+                <h1 class="font-medium text-gray-800">Availability</h1>
+                <p class="text-gray-400 font-light">
+                  Search developers by status.
+                </p>
+              </div>
+              <div>
+                <div class="relative">
                   <button
-                    class="w-full py-1"
-                    type="button"
-                    v-for="status in statuses"
-                    @click="selectAvailability(status)"
+                    class="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded border border-gray-200"
+                    @click="toggleStatusesDropdown()"
                   >
-                    {{ status.name }}
+                    {{ availability || "Select option" }}
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-4 h-4"
+                        :class="{
+                          'transform rotate-180 transition-all ease-in-out duration-300':
+                            openStatusesDropdown,
+                          'transform rotate-0 transition-all ease-in-out duration-300':
+                            !openStatusesDropdown,
+                        }"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                        />
+                      </svg>
+                    </span>
                   </button>
+
+                  <transition :duration="550" name="nested">
+                    <Dropdown
+                      v-show="openStatusesDropdown"
+                      dropdown="availability-open"
+                      class="absolute mt-1 px-4 py-1 right-0 text-sm"
+                    >
+                      <div class="flex flex-col">
+                        <button
+                          class="py-0.5"
+                          type="button"
+                          v-for="status in statuses"
+                          @click="selectAvailability(status)"
+                        >
+                          {{ status.name }}
+                        </button>
+                      </div>
+                    </Dropdown>
+                  </transition>
                 </div>
-              </Dropdown>
-            </transition>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="text-sm">
+                <h1 class="font-medium text-gray-800">Order</h1>
+                <p class="text-gray-400 font-light">Choose the list order.</p>
+              </div>
+              <div>
+                <div class="relative">
+                  <button
+                    class="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded border border-gray-200"
+                    @click="toggleOrderDropdown()"
+                  >
+                    {{ order || "Select option" }}
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-4 h-4"
+                        :class="{
+                          'transform rotate-180 transition-all ease-in-out duration-300':
+                            openOrderDropdown,
+                          'transform rotate-0 transition-all ease-in-out duration-300':
+                            !openOrderDropdown,
+                        }"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+
+                  <transition :duration="550" name="nested">
+                    <Dropdown
+                      v-show="openOrderDropdown"
+                      dropdown="availability-open"
+                      class="absolute mt-1 px-4 py-1 right-0 text-sm"
+                    >
+                      <div class="flex flex-col">
+                        <button
+                          class="py-0.5"
+                          type="button"
+                          v-for="order in orderes"
+                          @click="selectOrder(order)"
+                        >
+                          {{ order.name }}
+                        </button>
+                      </div>
+                    </Dropdown>
+                  </transition>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </Dropdown>
-    </transition>
+      </transition>
+    </div>
   </section>
 </template>
 <script setup>
@@ -116,13 +208,17 @@ const router = useRouter();
 const route = useRoute();
 const filtersOpen = useLocalStorage(false, "filtersOpen");
 const search = useLocalStorage("", "search");
+const isTyping = ref(false);
 const availability = useLocalStorage("", "availability");
 const loadingStatus = ref(true);
 const statuses = ref([]);
 const openStatusesDropdown = useLocalStorage(false, "openStatusesDropdown");
+const openOrderDropdown = useLocalStorage(false, "openOrderDropdown");
 const availabilityId = useLocalStorage(null, "availabilityId");
+const order = useLocalStorage("", "order");
+const orderKey = useLocalStorage("", "orderKey");
 
-const emit = defineEmits(["send-availability"]);
+const emit = defineEmits(["send-availability", "send-order", "user-typing"]);
 
 const currentUuid = computed(() => {
   return router.currentRoute.value.query.developer;
@@ -143,10 +239,27 @@ const loadUserStatus = async () => {
 
 const toggleFilters = () => {
   filtersOpen.value = !filtersOpen.value;
+
+  if (!filtersOpen.value) {
+    openStatusesDropdown.value = false;
+    openOrderDropdown.value = false;
+  }
 };
 
 const toggleStatusesDropdown = () => {
   openStatusesDropdown.value = !openStatusesDropdown.value;
+
+  if (openOrderDropdown.value) {
+    openOrderDropdown.value = false;
+  }
+};
+
+const toggleOrderDropdown = () => {
+  openOrderDropdown.value = !openOrderDropdown.value;
+
+  if (openStatusesDropdown.value) {
+    openStatusesDropdown.value = false;
+  }
 };
 
 const selectAvailability = (selectedStatus) => {
@@ -157,10 +270,27 @@ const selectAvailability = (selectedStatus) => {
       developer: currentUuid.value,
       search: search.value,
       availability: selectedStatus.name,
+      order: order.value,
     },
   });
 
   emit("send-availability", selectedStatus);
+};
+
+const selectOrder = (selectedOrder) => {
+  order.value = selectedOrder.name;
+  orderKey.value = selectedOrder.value;
+
+  router.push({
+    query: {
+      developer: currentUuid.value,
+      search: search.value,
+      availability: availability.value,
+      order: selectedOrder.name,
+    },
+  });
+
+  emit("send-order", selectedOrder);
 };
 
 watch(search, (value) => {
@@ -169,13 +299,39 @@ watch(search, (value) => {
       developer: currentUuid.value,
       search: value,
       availability: availability.value,
+      order: order.value,
     },
   });
+});
+
+// If filtersOpen is false, close the openStatusesDropdown
+watch(filtersOpen, (value) => {
+  if (!value) {
+    openStatusesDropdown.value = false;
+  }
 });
 
 watchEffect(() => {
   loadUserStatus();
 });
+
+const orderes = [
+  { name: "Newest", value: "desc" },
+  { name: "Oldest", value: "asc" },
+  { name: "Random", value: "random" },
+];
+
+const onSearchInput = () => {
+  isTyping.value = true;
+
+  emit("user-typing", isTyping.value);
+
+  setTimeout(() => {
+    isTyping.value = false;
+
+    emit("user-typing", isTyping.value);
+  }, 500);
+};
 </script>
 
 <style scoped>
@@ -224,5 +380,36 @@ watchEffect(() => {
     has been fixed.
   */
   opacity: 0;
+}
+
+.bounce-enter-active {
+  animation: bounce-in 0.3s;
+}
+.bounce-leave-active {
+  animation: bounce-out 0.3s reverse;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(0);
+  }
 }
 </style>

@@ -18,7 +18,7 @@
           </picture>
           <div
             v-else
-            class="min-w-14 max-w-14 h-14 rounded-2xl justify-center items-center flex bg-gray-100 font-medium text-center text-gray-500 text-xl"
+            class="min-w-14 max-w-14 h-14 rounded-2xl justify-center items-center flex bg-gray-200 font-medium text-center text-gray-500 text-xl"
           >
             {{ initials.getInitials(developer.name, developer.surname) }}
           </div>
@@ -142,12 +142,17 @@ const currentAvailability = computed(() => {
   return router.currentRoute.value.query.availability;
 });
 
+const currentOrder = computed(() => {
+  return router.currentRoute.value.query.order;
+});
+
 const changeDeveloperProfile = () => {
   router.push({
     query: {
       developer: developerUuid,
       search: currentSearchTerm.value,
       availability: currentAvailability.value,
+      order: currentOrder.value,
     },
   });
 };
