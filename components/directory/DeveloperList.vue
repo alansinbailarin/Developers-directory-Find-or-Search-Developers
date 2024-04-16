@@ -1,7 +1,7 @@
 <template>
   <section
     ref="scrollSection"
-    class="overflow-y-auto h-[67vh] scroll-styling rounded-lg"
+    class="overflow-y-auto h-[62vh] md:h-[67vh] scroll-styling rounded-lg"
   >
     <DeveloperItem
       :developer="developer"

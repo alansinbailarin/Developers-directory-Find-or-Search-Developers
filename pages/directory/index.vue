@@ -11,8 +11,8 @@
         <div>Img</div>
       </div>
     </div>
-    <div class="flex items-center gap-4 my-8">
-      <div class="w-2/6">
+    <div class="md:flex items-center gap-4 my-8">
+      <div class="md:w-2/6">
         <SearchResult :developersTotalCount="developersTotalCount" />
         <div class="mt-5">
           <DeveloperList
@@ -22,13 +22,13 @@
           />
         </div>
       </div>
-      <div class="w-4/6">
+      <div class="md:w-4/6">
         <DeveloperSearch
           @send-availability="onAvailabilitySelected"
           @send-order="onOrderSelected"
           @user-typing="handleTyping"
         />
-        <DeveloperInformation />
+        <DeveloperInformation class="hidden md:block" />
       </div>
     </div>
   </div>

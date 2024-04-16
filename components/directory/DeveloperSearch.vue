@@ -1,5 +1,5 @@
 <template>
-  <section class="flex items-center justify-between gap-3">
+  <section class="flex items-center justify-between gap-3 md:mt-0 mt-5">
     <div class="relative w-full">
       <div
         class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
@@ -28,8 +28,12 @@
         @input="onSearchInput"
       />
     </div>
-    <div>
-      <button type="button" class="text-gray-700" @click="toggleFilters()">
+    <div class="">
+      <button
+        type="button"
+        class="text-gray-500 bg-gray-50 p-2 border border-gray-100 rounded-md hover:bg-gray-100 transition-colors ease-in-out duration-300"
+        @click="toggleFilters()"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -54,12 +58,12 @@
       <transition name="bounce">
         <div
           v-show="filtersOpen"
-          class="bg-white rounded-lg shadow-lg max-w-lg w-full text-sm"
+          class="bg-white rounded-lg shadow-lg max-w-sm md:max-w-lg w-full md:text-sm"
         >
           <div
             class="p-4 flex items-center justify-between border bg-gray-50 border-b-gray-100 rounded-t-lg"
           >
-            <h3 class="text-sm font-bold text-gray-800">Filters settings</h3>
+            <h3 class="md:text-sm font-bold text-gray-800">Filters settings</h3>
             <button @click="toggleFilters()" class="text-gray-600">
               <svg
                 class="w-4 h-4"
@@ -81,7 +85,7 @@
           <div class="p-4">
             <!-- Contenido del modal -->
             <div class="flex items-center mb-3 justify-between">
-              <div class="text-sm">
+              <div class="md:text-sm">
                 <h1 class="font-medium text-gray-800">Availability</h1>
                 <p class="text-gray-400 font-light">
                   Search developers by status.
@@ -93,7 +97,7 @@
                     class="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded border border-gray-200"
                     @click="toggleStatusesDropdown()"
                   >
-                    {{ availability || "Select option" }}
+                    {{ availability || "Options" }}
                     <span
                       ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +126,7 @@
                     <Dropdown
                       v-show="openStatusesDropdown"
                       dropdown="availability-open"
-                      class="absolute mt-1 px-4 py-1 right-0 text-sm"
+                      class="absolute mt-1 px-4 py-1 right-0 md:text-sm"
                     >
                       <div class="flex flex-col">
                         <button
@@ -140,7 +144,7 @@
               </div>
             </div>
             <div class="flex items-center justify-between">
-              <div class="text-sm">
+              <div class="md:text-sm">
                 <h1 class="font-medium text-gray-800">Order</h1>
                 <p class="text-gray-400 font-light">Choose the list order.</p>
               </div>
@@ -150,7 +154,7 @@
                     class="flex items-center gap-1 bg-gray-100 px-2 py-1 rounded border border-gray-200"
                     @click="toggleOrderDropdown()"
                   >
-                    {{ order || "Select option" }}
+                    {{ order || "Options" }}
                     <span
                       ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -179,7 +183,7 @@
                     <Dropdown
                       v-show="openOrderDropdown"
                       dropdown="availability-open"
-                      class="absolute mt-1 px-4 py-1 right-0 text-sm"
+                      class="absolute mt-1 px-4 py-1 right-0 md:text-sm"
                     >
                       <div class="flex flex-col">
                         <button
