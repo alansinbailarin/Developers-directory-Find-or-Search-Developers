@@ -113,7 +113,7 @@
   </section>
   <section v-else>
     <div
-      class="h-36 w-80 bg-gray-100 rounded-lg mb-3 animate-pulse flex items-center justify-center"
+      class="h-40 w-full bg-gray-200 rounded-lg mb-3 animate-pulse flex items-center justify-center"
     ></div>
   </section>
 </template>
