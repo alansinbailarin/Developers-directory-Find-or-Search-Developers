@@ -185,10 +185,8 @@
   </section>
   <section
     v-else
-    class="flex items-center h-[66vh] justify-center mt-5 rounded-lg bg-gray-50 shadow-sm p-6"
-  >
-    <Loader />
-  </section>
+    class="flex items-center h-[66vh] justify-center mt-5 rounded-lg bg-gray-50 shadow-sm p-6 animate-pulse"
+  ></section>
 </template>
 <script setup>
 const router = useRouter();

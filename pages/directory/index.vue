@@ -27,6 +27,7 @@
           @send-availability="onAvailabilitySelected"
           @send-order="onOrderSelected"
           @user-typing="handleTyping"
+          @reload-filters="onReloadFilters"
         />
         <DeveloperInformation class="hidden md:block" />
       </div>
@@ -74,26 +75,10 @@ const page = computed(() => {
   return developersData.value.current_page;
 });
 
-// const shouldResetPage = computed(() => {
-//   return searchTerm.value !== "" && page.value !== 1;
-// });
-
 watch(
   () => route.query.search,
   (newValue) => {
     searchTerm.value = newValue || "";
-
-    // if (availability.value) {
-    //   onAvailabilitySelected(availability.value);
-    // }
-
-    // if (order.value) {
-    //   onOrderSelected(order.value);
-    // }
-
-    // if (page.value) {
-    //   loadDevelopers(page.value);
-    // }
   }
 );
 
@@ -109,8 +94,12 @@ const onAvailabilitySelected = (selectedAvailability) => {
     availabilityName.value = selectedAvailability.name;
     availabilityId.value = selectedAvailability.id;
 
-    loadDevelopers();
+    loadDevelopers(page.value);
   }
+};
+
+const onReloadFilters = (reload) => {
+  reloadFilters.value = reload;
 };
 
 const onOrderSelected = (selectedOrder) => {
@@ -119,7 +108,7 @@ const onOrderSelected = (selectedOrder) => {
     orderName.value = selectedOrder.name;
     orderValue.value = selectedOrder.value;
 
-    loadDevelopers();
+    loadDevelopers(page.value);
   }
 };
 
@@ -146,6 +135,12 @@ const loadDevelopers = async (_page) => {
       if (nextPage.value) {
         nextPage.value = 1;
       }
+    }
+
+    if (reloadFilters.value) {
+      _page = 1;
+
+      reloadFilters.value = false;
     }
 
     if (_page === 1) {
@@ -177,9 +172,11 @@ const loadDevelopers = async (_page) => {
     });
 
     developers.value = developers.value.concat(newDevelopers);
-
     developersTotalCount.value = data.value.data.total;
+
     developersData.value = data.value.data;
+
+    console.log("Mi developers:", developers.value);
 
     if (developers.value.length > 0) {
       lastDeveloperUuid.value = developers.value[0].uuid;

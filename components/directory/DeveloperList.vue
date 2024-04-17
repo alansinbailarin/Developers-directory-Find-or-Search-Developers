@@ -44,23 +44,38 @@ const handleScroll = () => {
     scrollSection.value.scrollTop -
     scrollSection.value.clientHeight;
 
-  nextPage.value = props.developersData.current_page + 1;
-
-  if (pixelsFromBottom < 10) {
+  if (pixelsFromBottom < 10 && !loading.value) {
     loading.value = true;
 
-    if (nextPage.value <= props.developersData.last_page) {
-      sendNextPage();
+    // Find the next sequential page
+    let nextPageToLoad = findNextPage();
+
+    if (nextPageToLoad <= props.developersData.last_page) {
+      sendNextPage(nextPageToLoad);
     } else {
       loading.value = false;
     }
   }
 };
 
-const sendNextPage = () => {
-  loading.value = false;
+const findNextPage = () => {
+  let nextPageCandidate = props.developersData.current_page + 1;
 
-  emit("next-page", nextPage.value);
+  while (nextPageCandidate <= props.developersData.last_page) {
+    if (
+      !props.developersData.data.some((dev) => dev.page === nextPageCandidate)
+    ) {
+      return nextPageCandidate;
+    }
+    nextPageCandidate++;
+  }
+
+  return nextPageCandidate;
+};
+
+const sendNextPage = (page) => {
+  loading.value = false;
+  emit("next-page", page);
 };
 </script>
 <style scoped>

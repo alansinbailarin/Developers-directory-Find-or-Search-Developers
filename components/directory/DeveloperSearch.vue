@@ -221,8 +221,14 @@ const openOrderDropdown = useLocalStorage(false, "openOrderDropdown");
 const availabilityId = useLocalStorage(null, "availabilityId");
 const order = useLocalStorage("", "order");
 const orderKey = useLocalStorage("", "orderKey");
+const reloadFilters = ref(false);
 
-const emit = defineEmits(["send-availability", "send-order", "user-typing"]);
+const emit = defineEmits([
+  "send-availability",
+  "send-order",
+  "user-typing",
+  "reload-filters",
+]);
 
 const currentUuid = computed(() => {
   return router.currentRoute.value.query.developer;
@@ -269,6 +275,7 @@ const toggleOrderDropdown = () => {
 const selectAvailability = (selectedStatus) => {
   availability.value = selectedStatus.name;
   availabilityId.value = selectedStatus.id;
+  reloadFilters.value = true;
   router.push({
     query: {
       developer: currentUuid.value,
@@ -279,11 +286,13 @@ const selectAvailability = (selectedStatus) => {
   });
 
   emit("send-availability", selectedStatus);
+  emit("reload-filters", reloadFilters.value);
 };
 
 const selectOrder = (selectedOrder) => {
   order.value = selectedOrder.name;
   orderKey.value = selectedOrder.value;
+  reloadFilters.value = true;
 
   router.push({
     query: {
@@ -295,6 +304,7 @@ const selectOrder = (selectedOrder) => {
   });
 
   emit("send-order", selectedOrder);
+  emit("reload-filters", reloadFilters.value);
 };
 
 watch(search, (value) => {
